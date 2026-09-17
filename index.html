@@ -1,290 +1,112 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CreativeStudy</title>
+<title>CreativeStudy — FINAL ALL 5 STEPS</title>
 <style>
-body{margin:0;font-family:Arial;background:#f5f7fb;color:#172033}
-header{background:#172033;color:white;text-align:center;padding:28px 15px}
-nav{background:white;padding:10px;text-align:center;position:sticky;top:0}
-button{padding:10px 15px;margin:4px;border:0;border-radius:8px;cursor:pointer}
-main{max-width:1000px;margin:auto;padding:18px}
-.card{background:white;padding:18px;margin:14px 0;border-radius:12px;box-shadow:0 2px 10px #0001}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
+header{background:#172033;color:white;padding:28px 18px;text-align:center}
+header h1{margin:0;font-size:32px}header p{margin:8px 0 0}
+nav{background:white;padding:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0001}
+button,.tab{border:0;border-radius:9px;padding:10px 14px;background:#e9eef7;color:#172033;cursor:pointer;font-weight:600}
+button.active,.tab.active{background:#172033;color:white}
+main{max-width:1050px;margin:auto;padding:20px}.hero,.card{background:white;border-radius:14px;padding:20px;margin:14px 0;box-shadow:0 2px 12px #0000000d}
+.hero{text-align:center}.hero h2{margin-top:0}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
-.formula{background:#eef2f8;padding:10px;margin:7px 0;border-radius:7px}
-.tip{background:#eaf7ee;padding:12px;border-radius:8px}
-input{width:100%;padding:13px;border:1px solid #ccc;border-radius:8px;font-size:16px}
-.hidden{display:none}
-.option{display:block;width:100%;text-align:left;background:#f1f3f7}
-.correct{background:#d9f4df!important}
-.wrong{background:#ffdede!important}
+.card h3{margin-top:0}.formula{background:#f0f4fa;border-left:4px solid #172033;padding:10px;margin:8px 0;border-radius:6px;font-family:Georgia,serif}
+.example{background:#fff8e8;padding:12px;border-radius:8px;margin-top:10px}
+.tip{background:#eef9f2;padding:12px;border-radius:8px}.hidden{display:none}
+input{width:100%;padding:13px;border:1px solid #ccd4e0;border-radius:9px;margin:10px 0;font-size:16px}
+.option{display:block;width:100%;text-align:left;margin:7px 0;background:#f3f5f9}.correct{background:#dff5e5!important}.wrong{background:#ffe1e1!important}
+footer{text-align:center;padding:25px;color:#657084}
+.small{font-size:13px;color:#657084}
 </style>
 </head>
-
 <body>
-
 <header>
 <h1>CreativeStudy</h1>
 <p>Crack JEE and NEET with CreativeStudy</p>
-<b>ALL 5 STEPS • FINAL VERSION</b>
+<p class="small" style="color:#dbe2ee">FINAL • ALL 5 STEPS • PHONE READY</p>
 </header>
-
 <nav>
-<button onclick="page('home')">🏠 Home</button>
-<button onclick="page('jee')">📘 JEE</button>
-<button onclick="page('neet')">🧬 NEET</button>
-<button onclick="page('mcq')">📝 100 MCQs</button>
-<button onclick="page('tips')">💡 Tips</button>
+<button class="active" onclick="show('home',this)">Home</button>
+<button onclick="show('jee',this)">JEE</button>
+<button onclick="show('neet',this)">NEET</button>
+<button onclick="show('mcq',this)">100 MCQs</button>
+<button onclick="show('tips',this)">Tips</button>
 </nav>
-
 <main>
-
 <section id="home">
-<div class="card">
-<h2>📚 Welcome to CreativeStudy</h2>
-<p>JEE & NEET preparation with easy formulas, chapter-wise notes, solved examples, MCQs and smart study tips.</p>
-</div>
-
+<div class="hero"><h2>📚 Learn • Revise • Practice</h2><p>Chapter-wise notes, quick formulas, solved examples, MCQs and study tips in one place.</p></div>
 <div class="grid">
-<div class="card"><h3>⚡ Easy Formulas</h3><p>Important formulas for quick revision.</p></div>
-<div class="card"><h3>📝 100 MCQs</h3><p>Practice questions with instant answers.</p></div>
-<div class="card"><h3>💡 Study Tips</h3><p>Simple preparation strategies.</p></div>
+<div class="card"><h3>⚡ Easy Formulas</h3><p>Important formulas arranged chapter-wise for quick revision.</p></div>
+<div class="card"><h3>📝 MCQ Practice</h3><p>100 practice questions with instant answer checking.</p></div>
+<div class="card"><h3>💡 Smart Tips</h3><p>Simple strategies for JEE and NEET preparation.</p></div>
 </div>
-
-<div class="card">
-<h3>🔎 Search</h3>
-<input id="search" placeholder="Search topic or formula..." oninput="searchNotes()">
-</div>
+<div class="card"><h3>🔎 Search Notes</h3><input id="search" placeholder="Search chapter, formula or topic..." oninput="filterCards()"></div>
 </section>
-
 
 <section id="jee" class="hidden">
-<div class="card"><h2>📘 JEE Preparation</h2></div>
-
+<div class="hero"><h2>JEE Preparation</h2><p>Physics • Chemistry • Maths</p></div>
 <div class="grid">
-
-<div class="card note">
-<h3>⚙️ Physics — Kinematics</h3>
-<div class="formula">v = u + at</div>
-<div class="formula">s = ut + ½at²</div>
-<div class="formula">v² = u² + 2as</div>
-<p><b>Example:</b> u=0, a=2, t=5 → v=10 m/s</p>
-</div>
-
-<div class="card note">
-<h3>🧲 Physics — Laws of Motion</h3>
-<div class="formula">F = ma</div>
-<div class="formula">p = mv</div>
-<div class="formula">Impulse = Δp</div>
-<p class="tip">Tip: Draw a free-body diagram.</p>
-</div>
-
-<div class="card note">
-<h3>🔋 Physics — Work Energy Power</h3>
-<div class="formula">W = Fs cosθ</div>
-<div class="formula">K.E. = ½mv²</div>
-<div class="formula">P = W/t</div>
-</div>
-
-<div class="card note">
-<h3>🌍 Physics — Gravitation</h3>
-<div class="formula">F = GMm/r²</div>
-<div class="formula">g = GM/R²</div>
-</div>
-
-<div class="card note">
-<h3>🧪 Chemistry — Mole Concept</h3>
-<div class="formula">n = m/M</div>
-<div class="formula">N = nNₐ</div>
-<div class="formula">Molarity = moles/volume(L)</div>
-</div>
-
-<div class="card note">
-<h3>⚛️ Chemistry — Atomic Structure</h3>
-<div class="formula">Eₙ = −13.6/n² eV</div>
-<div class="formula">λ = h/p</div>
-</div>
-
-<div class="card note">
-<h3>🔗 Chemistry — Chemical Bonding</h3>
-<p>Ionic, covalent, coordinate bonds, VSEPR and hybridisation.</p>
-</div>
-
-<div class="card note">
-<h3>🧴 Chemistry — Acids & Bases</h3>
-<div class="formula">pH = −log[H⁺]</div>
-<div class="formula">pOH = −log[OH⁻]</div>
-</div>
-
-<div class="card note">
-<h3>📐 Maths — Quadratic Equations</h3>
-<div class="formula">x = (−b ± √(b²−4ac))/2a</div>
-<div class="formula">D = b²−4ac</div>
-</div>
-
-<div class="card note">
-<h3>📐 Maths — Trigonometry</h3>
-<div class="formula">sin²θ + cos²θ = 1</div>
-<div class="formula">1+tan²θ = sec²θ</div>
-</div>
-
-<div class="card note">
-<h3>∂ Maths — Differentiation</h3>
-<div class="formula">d(xⁿ)/dx = nxⁿ⁻¹</div>
-<div class="formula">d(sin x)/dx = cos x</div>
-</div>
-
-<div class="card note">
-<h3>🎲 Maths — Probability</h3>
-<div class="formula">P(A)=Favourable/Total</div>
-<div class="formula">P(A')=1−P(A)</div>
-</div>
-
+<div class="card searchable"><h3>⚙️ Physics — Kinematics</h3><div class="formula">v = u + at</div><div class="formula">s = ut + ½at²</div><div class="formula">v² = u² + 2as</div><div class="example"><b>Example:</b> u=0, a=2 m/s², t=5 s → v=10 m/s.</div></div>
+<div class="card searchable"><h3>🧲 Physics — Laws of Motion</h3><div class="formula">F = ma</div><div class="formula">p = mv</div><div class="formula">Impulse = FΔt = Δp</div><div class="tip">Tip: Always draw a free-body diagram.</div></div>
+<div class="card searchable"><h3>🔋 Physics — Work, Energy & Power</h3><div class="formula">W = Fs cosθ</div><div class="formula">K.E. = ½mv²</div><div class="formula">P = W/t</div></div>
+<div class="card searchable"><h3>🌍 Physics — Gravitation</h3><div class="formula">F = GMm/r²</div><div class="formula">g = GM/R²</div><div class="formula">vₑ = √(2GM/R)</div></div>
+<div class="card searchable"><h3>🧪 Chemistry — Mole Concept</h3><div class="formula">n = m/M</div><div class="formula">N = nNₐ</div><div class="formula">Molarity = moles / volume(L)</div></div>
+<div class="card searchable"><h3>⚛️ Chemistry — Atomic Structure</h3><div class="formula">Eₙ = −13.6/n² eV (hydrogen)</div><div class="formula">λ = h/p</div></div>
+<div class="card searchable"><h3>🔗 Chemistry — Chemical Bonding</h3><p>Review ionic, covalent, coordinate bonds, VSEPR and hybridisation.</p><div class="tip">Tip: Draw Lewis structures before deciding geometry.</div></div>
+<div class="card searchable"><h3>🧴 Chemistry — Acids & Bases</h3><div class="formula">pH = −log[H⁺]</div><div class="formula">pOH = −log[OH⁻]</div></div>
+<div class="card searchable"><h3>📐 Maths — Quadratic Equations</h3><div class="formula">x = (−b ± √(b²−4ac))/2a</div><div class="formula">D = b²−4ac</div></div>
+<div class="card searchable"><h3>📐 Maths — Trigonometry</h3><div class="formula">sin²θ + cos²θ = 1</div><div class="formula">1 + tan²θ = sec²θ</div></div>
+<div class="card searchable"><h3>∂ Maths — Differentiation</h3><div class="formula">d(xⁿ)/dx = nxⁿ⁻¹</div><div class="formula">d(sin x)/dx = cos x</div></div>
+<div class="card searchable"><h3>🎲 Maths — Probability</h3><div class="formula">P(A) = favourable outcomes / total outcomes</div><div class="formula">P(A') = 1 − P(A)</div></div>
 </div>
 </section>
-
 
 <section id="neet" class="hidden">
-<div class="card"><h2>🧬 NEET Preparation</h2></div>
-
+<div class="hero"><h2>NEET Preparation</h2><p>Biology • Physics • Chemistry</p></div>
 <div class="grid">
-
-<div class="card note">
-<h3>🧬 Biology — Cell</h3>
-<p>Cell membrane controls transport. Nucleus contains genetic material. Mitochondria produce ATP.</p>
-</div>
-
-<div class="card note">
-<h3>🫀 Biology — Human Physiology</h3>
-<p>Revise digestion, breathing, circulation, excretion and neural coordination.</p>
-</div>
-
-<div class="card note">
-<h3>🌱 Biology — Plant Physiology</h3>
-<p>Study photosynthesis, respiration, transport, mineral nutrition and plant growth.</p>
-</div>
-
-<div class="card note">
-<h3>🧬 Biology — Genetics</h3>
-<div class="formula">Genotype = genetic constitution</div>
-<div class="formula">Phenotype = observable trait</div>
-</div>
-
-<div class="card note">
-<h3>📏 Physics — Units & Measurements</h3>
-<p>SI base units: metre, kilogram, second, ampere, kelvin, mole, candela.</p>
-<div class="formula">% Error = (Absolute error/Measured value)×100</div>
-</div>
-
-<div class="card note">
-<h3>⚛️ Chemistry — Atomic Structure</h3>
-<div class="formula">c = νλ</div>
-<div class="formula">E = hν</div>
-</div>
-
+<div class="card searchable"><h3>🧬 Biology — Cell</h3><p>Cell membrane controls transport. Nucleus stores genetic material. Mitochondria are major sites of ATP production.</p><div class="tip">Tip: Revise organelle function + diagrams together.</div></div>
+<div class="card searchable"><h3>🫀 Biology — Human Physiology</h3><p>Focus on digestion, breathing, circulation, excretion and neural/endocrine coordination.</p></div>
+<div class="card searchable"><h3>🌱 Biology — Plant Physiology</h3><p>Revise photosynthesis, respiration, transport, mineral nutrition and plant growth regulators.</p></div>
+<div class="card searchable"><h3>🧬 Biology — Genetics</h3><div class="formula">Phenotype = observable traits</div><div class="formula">Genotype = genetic constitution</div><p>Practice Mendelian crosses and pedigree-based questions.</p></div>
+<div class="card searchable"><h3>📏 Physics — Units & Measurements</h3><p>SI base units: metre, kilogram, second, ampere, kelvin, mole, candela.</p><div class="formula">Percentage error = (absolute error / measured value) × 100</div></div>
+<div class="card searchable"><h3>⚛️ Chemistry — Atomic Structure</h3><div class="formula">c = νλ</div><div class="formula">E = hν</div><p>Know quantum numbers, electronic configuration and basic spectra.</p></div>
 </div>
 </section>
 
-
 <section id="mcq" class="hidden">
-<div class="card">
-<h2>📝 100 MCQs</h2>
-<p>Choose an answer to check it instantly.</p>
-<input id="mq" placeholder="Search MCQs..." oninput="makeQuiz()">
-</div>
+<div class="hero"><h2>📝 100 MCQs</h2><p>Practice and check your answer instantly.</p></div>
+<input id="mcqSearch" placeholder="Search MCQs..." oninput="renderMCQ()">
 <div id="quiz"></div>
 </section>
 
-
 <section id="tips" class="hidden">
-<div class="card"><h2>💡 Study Tips</h2></div>
-
+<div class="hero"><h2>💡 Study Tips</h2></div>
 <div class="grid">
-<div class="card"><h3>1️⃣ Daily Revision</h3><p>Revise formulas and important facts every day.</p></div>
-<div class="card"><h3>2️⃣ Practice</h3><p>Solve questions without seeing the answer first.</p></div>
-<div class="card"><h3>3️⃣ Error Notebook</h3><p>Write repeated mistakes and revise them.</p></div>
-<div class="card"><h3>4️⃣ Mock Tests</h3><p>Practice with a timer and analyse mistakes.</p></div>
+<div class="card"><h3>1. Daily Revision</h3><p>Revise formulas and key facts every day instead of waiting for the last week.</p></div>
+<div class="card"><h3>2. Active Practice</h3><p>Solve questions without looking at the answer first.</p></div>
+<div class="card"><h3>3. Error Notebook</h3><p>Write down repeated mistakes and revise them regularly.</p></div>
+<div class="card"><h3>4. Mock Tests</h3><p>Use timed practice and analyse incorrect questions after each test.</p></div>
 </div>
 </section>
-
 </main>
-
-<footer style="text-align:center;padding:25px">
-© CreativeStudy • JEE & NEET
-</footer>
-
+<footer>© CreativeStudy • All 5 Steps Combined</footer>
 <script>
-
-function page(x){
-document.querySelectorAll("main>section").forEach(s=>s.classList.add("hidden"));
-document.getElementById(x).classList.remove("hidden");
-if(x=="mcq")makeQuiz();
-}
-
-function searchNotes(){
-let x=document.getElementById("search").value.toLowerCase();
-document.querySelectorAll(".note").forEach(c=>{
-c.style.display=c.innerText.toLowerCase().includes(x)?"block":"none";
-});
-}
-
-let topics=[
-["JEE Physics","Kinematics","If u=0,a=2,t=5, v=?","10 m/s"],
-["JEE Physics","Kinematics","SI unit of acceleration?","m/s²"],
-["JEE Physics","Laws of Motion","Newton's second law?","F=ma"],
-["JEE Physics","Work Energy","Kinetic energy?","½mv²"],
-["JEE Physics","Gravitation","Force varies as?","1/r²"],
-["JEE Chemistry","Mole Concept","Moles formula?","m/M"],
-["JEE Chemistry","Mole Concept","One mole contains?","Nₐ particles"],
-["JEE Chemistry","Atomic Structure","H atom ground energy?","−13.6 eV"],
-["JEE Chemistry","Bonding","Sharing electrons gives?","Covalent bond"],
-["JEE Chemistry","Acids Bases","Neutral pH?","7"],
-["JEE Maths","Quadratic","Discriminant?","b²−4ac"],
-["JEE Maths","Quadratic","Quadratic denominator?","2a"],
-["JEE Maths","Trigonometry","sin²θ+cos²θ?","1"],
-["JEE Maths","Differentiation","d(x²)/dx?","2x"],
-["JEE Maths","Probability","P(A')?","1−P(A)"],
-["NEET Biology","Cell","Powerhouse?","Mitochondria"],
-["NEET Biology","Cell","Genetic material mainly in?","Nucleus"],
-["NEET Biology","Genetics","Observable trait?","Phenotype"],
-["NEET Biology","Physiology","Gas exchange occurs in?","Alveoli"],
-["NEET Biology","Plant Physiology","Main photosynthesis pigment?","Chlorophyll"]
+const qs=[
+["JEE Physics","Kinematics","If u=0, a=2 and t=5, v is?","10 m/s"],["JEE Physics","Kinematics","SI unit of acceleration?","m/s²"],["JEE Physics","Laws of Motion","Newton's second law is?","F=ma"],["JEE Physics","Work Energy","Kinetic energy is?","½mv²"],["JEE Physics","Gravitation","Gravitational force varies as?","1/r²"],
+["JEE Chemistry","Mole Concept","Formula for moles?","m/M"],["JEE Chemistry","Mole Concept","1 mole contains?","Nₐ particles"],["JEE Chemistry","Atomic Structure","Energy of H atom at n=1?","−13.6 eV"],["JEE Chemistry","Bonding","Electron pair sharing forms?","Covalent bond"],["JEE Chemistry","Acids & Bases","pH of neutral water at 25°C?","7"],
+["JEE Maths","Quadratic","Discriminant is?","b²−4ac"],["JEE Maths","Quadratic","Quadratic formula denominator?","2a"],["JEE Maths","Trigonometry","sin²θ+cos²θ = ?","1"],["JEE Maths","Differentiation","d(x²)/dx = ?","2x"],["JEE Maths","Probability","P(A') = ?","1−P(A)"],
+["NEET Biology","Cell","Powerhouse of cell?","Mitochondria"],["NEET Biology","Cell","Genetic material is mainly in?","Nucleus"],["NEET Biology","Genetics","Observable trait is called?","Phenotype"],["NEET Biology","Physiology","Gas exchange in lungs occurs mainly in?","Alveoli"],["NEET Biology","Plant Physiology","Main pigment for photosynthesis?","Chlorophyll"]
 ];
-
-let mcqs=[];
-for(let i=0;i<100;i++){
-let q=topics[i%topics.length];
-mcqs.push(q);
-}
-
-function makeQuiz(){
-let search=(document.getElementById("mq")?.value||"").toLowerCase();
-let a=mcqs.filter(q=>(q[0]+" "+q[1]+" "+q[2]).toLowerCase().includes(search));
-document.getElementById("quiz").innerHTML=a.map((q,i)=>`
-<div class="card">
-<small>${q[0]} • ${q[1]}</small>
-<h3>${i+1}. ${q[2]}</h3>
-<button class="option" onclick="answer(this,'${q[3]}')">${q[3]}</button>
-<button class="option" onclick="answer(this,'${q[3]}')">None of these</button>
-<button class="option" onclick="answer(this,'${q[3]}')">Cannot say</button>
-<button class="option" onclick="answer(this,'${q[3]}')">Both A and B</button>
-</div>`).join("");
-}
-
-function answer(b,a){
-let box=b.parentElement;
-box.querySelectorAll("button").forEach(x=>x.disabled=true);
-if(b.innerText==a)b.classList.add("correct");
-else{
-b.classList.add("wrong");
-[...box.querySelectorAll("button")].find(x=>x.innerText==a).classList.add("correct");
-}
-}
-
-page("home");
-
+const options=["10 m/s","5 m/s","20 m/s","2 m/s","m/s²","N","kg","F=ma","½mv²","mv","1/r²","r²","m/M","M/m","Nₐ particles","−13.6 eV","−3.4 eV","0 eV","Covalent bond","Ionic bond","Metallic bond","7","0","14","b²−4ac","b²+4ac","2a","1","2x","1−P(A)","P(A)","Mitochondria","Ribosome","Nucleus","Phenotype","Genotype","Alveoli","Chlorophyll"];
+let all=[]; for(let i=0;i<100;i++){let q=qs[i%qs.length]; let ans=q[3]; let opts=[ans,...options.filter(x=>x!==ans)].slice(0,4); all.push([q[0],q[1],q[2],ans,opts]);}
+function show(id,btn){document.querySelectorAll('main>section').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(id==='mcq')renderMCQ();}
+function renderMCQ(){let term=(document.getElementById('mcqSearch')?.value||'').toLowerCase();let arr=all.filter(q=>(q[0]+q[1]+q[2]).toLowerCase().includes(term));document.getElementById('quiz').innerHTML=arr.map((q,i)=>`<div class="card"><div class="small">${q[0]} • ${q[1]}</div><h3>${i+1}. ${q[2]}</h3>${q[4].map(o=>`<button class="option" onclick="check(this,'${encodeURIComponent(q[3])}')">${o}</button>`).join('')}<p class="answer hidden">Correct answer: <b>${q[3]}</b></p></div>`).join('')||'<div class="card">No matching MCQs.</div>'}
+function check(btn,a){let ans=decodeURIComponent(a), box=btn.parentElement;box.querySelectorAll('.option').forEach(x=>x.disabled=true);if(btn.textContent===ans)btn.classList.add('correct');else{btn.classList.add('wrong');[...box.querySelectorAll('.option')].find(x=>x.textContent===ans)?.classList.add('correct')}box.querySelector('.answer').classList.remove('hidden')}
+function filterCards(){let t=document.getElementById('search').value.toLowerCase();document.querySelectorAll('.searchable').forEach(c=>c.style.display=c.textContent.toLowerCase().includes(t)?'block':'none')}
 </script>
 </body>
-  </html>
+</html>
